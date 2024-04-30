@@ -5,12 +5,16 @@ require_once "database_connection.php";
 // Uses student ID to fetch courses enrolled in
 $studentID = 1;
 
+// Total cost of courses enrolled
+$totalCost = 0;
+
 // Query the database
 $sql = "SELECT c.*, t.FIRSTNAME AS TEACHER_FIRSTNAME, t.MIDDLEINITIAL AS TEACHER_MIDDLE, t.LASTNAME AS TEACHER_LASTNAME
         FROM COURSE c
         INNER JOIN TEACHER t ON c.CTEACHERID = t.TEACHERID
         INNER JOIN ENLISTEDCLASSES ec ON c.COURSEID = ec.ECOURSEID
         WHERE ec.ESTUDENTID = $studentID";
+
 $result = $conn->query($sql);
 
 // Fetch and display the data
@@ -26,11 +30,18 @@ if ($result->num_rows > 0)
         echo '<div class="info">Cost: ' . $row["COST"] . '</div>';
         echo '<button class="info">Remove Course</button>';
         echo '</div>';
+
+        // Calculating the cost
+        $totalCost += $row["COST"];
     }
+
+    echo '<div class="total-cost">Total Cost: $' . number_format($totalCost, 2) . '</div>';
     
 } else {
     echo "No courses found";
 }
+
+
 
 // Close the database connection
 $conn->close();

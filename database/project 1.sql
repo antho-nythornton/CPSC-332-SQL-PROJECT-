@@ -115,5 +115,3 @@ SELECT * FROM STUDENT;
 
 -- View ENROLLMENT table
 SELECT * FROM ENLISTEDCLASSES;
-
-INSERT INTO TEACHER (TEACHERID, FIRSTNAME, MIDDLEINITIAL, LASTNAME, DIRECTORID, DIRECTOR) VALUES (1, 'John', 'D', 'Doe', 1, 'JAMES'), (2, 'Alice', 'M', 'Smith', 2, 'TOM'), (3, 'Michael', 'J', 'Johnson', 3, 'BILL'), (4, 'Emily', 'R', 'Roberts', 4, 'HAMID')
